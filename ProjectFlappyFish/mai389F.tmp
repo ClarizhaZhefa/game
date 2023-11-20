@@ -1,0 +1,36 @@
+[gd_scene load_steps=5 format=3 uid="uid://boflsnrydn5fw"]
+
+[ext_resource type="Texture2D" uid="uid://cmvv1r8ot6crx" path="res://assets/textures/baground.png" id="1_pd5hx"]
+[ext_resource type="Script" path="res://main.gd" id="1_w8o03"]
+[ext_resource type="PackedScene" uid="uid://cxlyl80nsyrsl" path="res://fish.tscn" id="3_kb8q0"]
+[ext_resource type="PackedScene" uid="uid://3uaph460em6r" path="res://ground.tscn" id="4_71nat"]
+
+[node name="Main" type="Node"]
+script = ExtResource("1_w8o03")
+
+[node name="Background" type="Sprite2D" parent="."]
+scale = Vector2(0.44537, 0.44537)
+texture = ExtResource("1_pd5hx")
+centered = false
+
+[node name="Fish" parent="." instance=ExtResource("3_kb8q0")]
+
+[node name="PipeTimer" type="Timer" parent="."]
+wait_time = 1.5
+
+[node name="ScoreLabel" type="Label" parent="."]
+z_index = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -20.0
+offset_right = 20.0
+offset_bottom = 23.0
+grow_horizontal = 2
+size_flags_vertical = 0
+theme_override_font_sizes/font_size = 40
+text = "SCORE : 0"
+
+[node name="Ground" parent="." instance=ExtResource("4_71nat")]
+
+[connection signal="timeout" from="PipeTimer" to="." method="_on_pipe_timer_timeout"]

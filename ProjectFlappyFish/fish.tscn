@@ -1,0 +1,31 @@
+[gd_scene load_steps=5 format=3 uid="uid://cxlyl80nsyrsl"]
+
+[ext_resource type="Script" path="res://fish.gd" id="1_74si1"]
+[ext_resource type="Texture2D" uid="uid://cp5wtf6y0ourr" path="res://assets/textures/ikan.png" id="2_fxk62"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_0duq6"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_fxk62")
+}],
+"loop": true,
+"name": &"swimming",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_jy30p"]
+radius = 26.0
+height = 72.0
+
+[node name="Fish" type="CharacterBody2D"]
+script = ExtResource("1_74si1")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.169118, 0.169118)
+sprite_frames = SubResource("SpriteFrames_0duq6")
+animation = &"swimming"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_jy30p")
